@@ -1,0 +1,28 @@
+hr{
+    display: flex;
+    border: none; /* Убираем границу */
+    background-color: rgb(26, 211, 26); /* Цвет линии */
+    color: rgb(26, 211, 26); /* Цвет линии для IE6-7 */
+    height: 2px; /* Толщина линии */
+    width: 35%;
+    margin-left: 0;
+}
+
+img{
+    display: flex;
+    height: 13vmax;
+    width: 10vmax;
+    margin-right: 1%;
+}
+
+.razplimg{
+    display: flex;
+    justify-items: start;
+}
+
+pre {
+    font-family: monospace;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+}
