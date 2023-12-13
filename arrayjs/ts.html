@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Генерация массива и сортировка</title>
+</head>
+<body>
+
+<form>
+  <label for="numElements">Введите количество элементов:</label>
+  <input type="number" id="numElements" name="numElements"><br><br>
+  
+  <label for="minValue">Минимальное значение:</label>
+  <input type="number" id="minValue" name="minValue"><br><br>
+  
+  <label for="maxValue">Максимальное значение:</label>
+  <input type="number" id="maxValue" name="maxValue"><br><br>
+  
+  <button type="button" onclick="generateAndSortArray()">Сгенерировать и отсортировать массив</button>
+</form>
+
+<table id="resultTable" border="1">
+  <caption>Значения массива</caption>
+  <thead>
+    <tr>
+      <th>Исходный массив</th>
+      <th>Отсортированный массив</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+  </tbody>
+</table>
+<form>
+    <label for="dayNumber">Введите номер дня недели (1 - 7):</label>
+    <input type="number" id="dayNumber" name="dayNumber" min="1" max="7"><br><br>
+    
+    <button type="button" onclick="showDayColor()">Показать цвет дня недели</button>
+</form>
+<p id="dayColor" style="font-weight: bold;"></p>
+
+<script>
+    function generateAndSortArray() {
+      var n = Number(document.getElementById('numElements').value);
+      var min = Number(document.getElementById('minValue').value);
+      var max = Number(document.getElementById('maxValue').value);
+      
+      var originalArray = generateRandomArray(n, min, max);
+      var sortedArray = originalArray.slice().sort(function(a, b) {
+        return a - b;
+      });
+      
+      displayArrays(originalArray, sortedArray);
+    }
+    
+    function generateRandomArray(n, min, max) {
+      var generatedArray = [];
+      for (var i = 0; i < n; i++) {
+        generatedArray.push(Math.floor(Math.random() * (max - min + 1)) + min);
+      }
+      return generatedArray;
+    }
+    
+    function displayArrays(originalArray, sortedArray) {
+      var tableBody = document.getElementById('tableBody');
+      tableBody.innerHTML = '';
+      
+      for (var i = 0; i < originalArray.length; i++) {
+        var row = tableBody.insertRow();
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        
+        cell1.textContent = originalArray[i];
+        cell2.textContent = sortedArray[i];
+      }
+    }
+  
+    var daysOfWeek = [
+    'ПОНЕДЕЛЬНИК',
+    'ВТОРНИК',
+    'СРЕДА',
+    'ЧЕТВЕРГ',
+    'ПЯТНИЦА',
+    'СУББОТА',
+    'ВОСКРЕСЕНЬЕ'
+  ];
+
+  var colors = [
+    'yellow',
+    'pink',
+    'green',
+    'orange',
+    'blue',
+    'darkviolet',
+    'red'
+  ];
+
+  function showDayColor() {
+    var dayNumber = Number(document.getElementById('dayNumber').value);
+
+    if (dayNumber >= 1 && dayNumber <= 7) {
+      var dayName = daysOfWeek[dayNumber - 1];
+      var dayColor = colors[dayNumber - 1];
+
+      var dayColorElement = document.getElementById('dayColor');
+      dayColorElement.textContent = dayName;
+      dayColorElement.style.color = dayColor;
+    } else {
+      alert('Введите корректный номер дня недели (1 - 7)');
+    }
+  }
+</script>
+</body>
+</html>
