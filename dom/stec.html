@@ -4,20 +4,60 @@
   <meta charset="UTF-8">
   <title>Задачи на JavaScript</title>
   <link rel="stylesheet" href="stylecs.css">
+  <style>
+    #id_h1:hover {
+      font-size: 24px; 
+      color: blue; 
+    }
+  </style>
+  <script>
+    function datecalcul() {
+      const currentDate = new Date();
+      const newYear = new Date(currentDate.getFullYear() + 1, 0, 1); 
+      const daysUntilNewYear = Math.floor((newYear - currentDate) / (1000 * 60 * 60 * 24)); 
+
+      const dateString = `Текущая дата и время: ${currentDate.toLocaleString()} \nДней до нового года: ${daysUntilNewYear}`;
+      alert(dateString);
+    }
+
+    function changeLineColor() {
+      const hrElement = document.querySelector('hr');
+      const randomColor = getRandomColor(); 
+      hrElement.style.backgroundColor = randomColor;
+    }
+
+    function enlargeImage(event) {
+      const image = event.target;
+      image.style.transform = 'scale(1.2)'; 
+    }
+
+    function shrinkImage(event) {
+      const image = event.target;
+      image.style.transform = 'scale(1)'; 
+    }
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  </script>
 </head>
 <body>
-  <h1 style="color: rgb(212, 20, 20);">Обращение к объектам документа и браузера</h1>
+  <h1 style="color: rgb(212, 20, 20);" id="id_h1">Обращение к объектам документа и браузера</h1>
   <hr>
   <div class="razplimg">
-    <img src="153787478515679287.jpg">
-    <img src="1537874780113467497.jpg">
-    <img src="1537874792112046964.jpg">
+    <img src="153787478515679287.jpg" onmouseover="enlargeImage(event)" onmouseout="shrinkImage(event)" id="im1">
+    <img src="1537874780113467497.jpg" onmouseover="enlargeImage(event)" onmouseout="shrinkImage(event)" id="im2">
+    <img src="1537874792112046964.jpg" onmouseover="enlargeImage(event)" onmouseout="shrinkImage(event)" id="im3">
   </div>
-  <h1 style="color: rgb(212, 20, 20);">Форма с кнопками</h1>
+  <h2 id="id_h2" style="color: rgb(212, 20, 20);">Форма с кнопками</h2>
   <div>
-    <button onclick="datecalcul()">Даты</button>
-    <button>Страница</button>
-    <button>Линия</button>
+    <button onclick="datecalcul()" id="but1">Даты</button>
+    <button onclick="changeLineColor()" id="but3">Линия</button>
   </div>
   <pre id="result1"></pre>
 </body>
